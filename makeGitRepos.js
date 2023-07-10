@@ -20,6 +20,9 @@ let dirs = ex('cd src/ && ls')
 dirs = dirs.split('\n')
 dirs.pop()
 
+// update script repo -- has to be first so we don't push BEFORE updating files
+ex(`cp ./makeGitRepos.js src/JSGitScript/ && cp ./update.js src/JSGitScript/`)
+
 dirs.forEach((e, i, a) => {
   let tmp = ex(`cd src/${e} && ls -a`).split('\n')
   if (tmp.indexOf('.git') < 0) {
@@ -33,11 +36,8 @@ dirs.forEach((e, i, a) => {
     ex(`cd src/${e} && git status`) !== ex(`cd src/wb-learn-git && git status`)
   ) {
     console.log('aaa')
-    // ex(
-    //   `cd src/${e} && git add -A && git commit -m "im scripting this, teehee" && git push`
-    // )
+    ex(
+      `cd src/${e} && git add -A && git commit -m "im scripting this, teehee" && git push`
+    )
   }
 })
-
-// update script repo
-ex(`cp ./makeGitRepos.js src/JSGitScript/`)
