@@ -33,9 +33,9 @@ dirs.forEach((e, i, a) => {
     ex(`cd src/${e} && git status`) !== ex(`cd src/wb-learn-git && git status`)
   ) {
     console.log('aaa')
-    ex(
-      `cd src/${e} && git add -A && git commit -m "im scripting this, teehee" && git push`
-    )
+    // ex(
+    //   `cd src/${e} && git add -A && git commit -m "im scripting this, teehee" && git push`
+    // )
   }
 })
 
